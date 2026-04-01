@@ -7,199 +7,219 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --neon-blue: #00D4FF;
-            --neon-red: #FF006E;
-            --dark-bg: #0A0A0A;
-            --card-bg: #1A1A1A;
-            --text-primary: #FFFFFF;
-            --text-secondary: #B0B0B0;
-            --border-gradient: linear-gradient(135deg, var(--neon-blue), var(--neon-red));
+            --accent-blue: #00D4FF;
+            --accent-red: #FF006E;
+            --bg-main: #0A0A0A;
+            --bg-card: #141414;
+            --text-main: #FFFFFF;
+            --text-dim: #A0A0A0;
+            --border: rgba(255, 255, 255, 0.1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--dark-bg);
-            min-height: 100vh;
-            overflow-x: hidden;
+            color: var(--text-main);
+            background-color: var(--bg-main);
+            padding: 0;
+            margin: 0;
         }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 0, 110, 0.1) 0%, transparent 50%);
-            z-index: -1;
-            animation: pulse 8s ease-in-out infinite;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
-
-        @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
-
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
 
         header {
             text-align: center;
-            margin-bottom: 40px;
             padding: 60px 20px;
-            background: var(--card-bg);
+            background: var(--bg-card);
             border-radius: 24px;
-            position: relative;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            margin-bottom: 40px;
         }
 
-        header::before {
-            content: '';
-            position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: var(--border-gradient);
-            border-radius: 24px;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        /* LOGO AJUSTADO - MÁS GRANDE Y CON MÁS PRESENCIA */
-        .logo-container {
-            margin-bottom: 30px;
-            perspective: 1000px;
+        /* LOGO: Tamaño profesional y estático */
+        .logo-wrapper {
+            margin-bottom: 25px;
         }
 
         .main-logo {
-            width: 200px; /* Tamaño aumentado significativamente */
-            max-width: 80%; /* Para que en móviles pequeños no se salga */
+            width: 180px; /* Tamaño equilibrado para móvil y escritorio */
             height: auto;
-            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.7));
-            transition: all 0.5s ease;
-            animation: float 4s ease-in-out infinite;
+            display: inline-block;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(2deg); }
-        }
-
-        .main-logo:hover {
-            transform: scale(1.1) rotate(-5deg);
-            filter: drop-shadow(0 0 35px var(--neon-red));
-        }
-
-        .brand {
-            color: var(--neon-blue);
-            font-weight: 900;
+        .brand-name {
+            color: var(--accent-blue);
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            font-size: 1rem;
-            margin-bottom: 10px;
-            text-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            display: block;
         }
 
         h1 {
-            color: var(--text-primary);
-            font-size: clamp(2rem, 8vw, 3.8rem); /* Tamaño fluido */
-            margin: 5px 0;
+            font-size: 2.8rem;
             font-weight: 900;
-            background: var(--border-gradient);
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #FFF 0%, #AAA 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
-        .tagline { color: var(--text-secondary); font-style: italic; font-size: 1.1rem; }
+        .tagline {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
 
         section {
-            background: rgba(26, 26, 26, 0.8);
-            padding: clamp(20px, 5vw, 50px);
+            background: var(--bg-card);
+            padding: 40px;
             border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            margin-bottom: 30px;
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
         }
 
-        .update-date { color: var(--neon-blue); font-weight: 600; margin-bottom: 25px; font-size: 0.9rem; }
+        .update-date {
+            color: var(--accent-blue);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            display: block;
+        }
 
-        .neon-box {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(255, 0, 110, 0.05));
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 16px;
+        .info-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--accent-blue);
             padding: 25px;
-            margin: 25px 0;
+            border-radius: 8px;
+            margin: 30px 0;
         }
 
         h2 {
-            color: var(--neon-blue);
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.4rem;
+            color: #FFF;
+            margin: 35px 0 20px 0;
             padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
         }
 
-        p, li { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 15px; }
-        ul { list-style: none; }
-        li { position: relative; padding-left: 25px; }
-        li::before { content: '►'; position: absolute; left: 0; color: var(--neon-red); font-size: 0.8rem; }
+        p, li {
+            color: var(--text-dim);
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+        }
 
-        .contact-box {
-            background: rgba(0, 212, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 25px;
+        ul {
+            list-style: none;
+            padding-left: 5px;
+        }
+
+        li {
+            position: relative;
+            padding-left: 25px;
+        }
+
+        li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .contact-section {
             text-align: center;
+            background: rgba(0, 212, 255, 0.05);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            margin-top: 40px;
         }
 
-        a { color: var(--neon-blue); text-decoration: none; font-weight: 700; transition: 0.3s; }
-        a:hover { color: var(--neon-red); text-shadow: 0 0 10px var(--neon-red); }
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
 
-        footer { text-align: center; color: #444; font-size: 0.8rem; padding: 40px; }
-        .neon-text { background: var(--border-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
+        a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #555;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            section { padding: 25px; }
+            .main-logo { width: 140px; }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <div class="logo-container">
+        <div class="logo-wrapper">
             <img src="logo.png" alt="Karagato Studios Logo" class="main-logo">
         </div>
-        <span class="brand">Karagato Studios</span>
+        <span class="brand-name">Karagato Studios</span>
         <h1>Z-Beat Studio</h1>
-        <p class="tagline">Audio Hi-Fi & Estética Neon</p>
+        <p class="tagline">Reproductor de Música Hi-Fi de Nueva Generación</p>
     </header>
 
     <section>
-        <p class="update-date">Última actualización: 31 de marzo de 2026</p>
+        <span class="update-date">Última actualización: 31 de marzo de 2026</span>
 
-        <div class="neon-box">
-            <strong><span class="neon-text">Privacidad Total:</span></strong><br>
-            Z-Beat Studio funciona de forma local. No recopilamos, no rastreamos y no subimos tus datos.
+        <div class="info-box">
+            <strong>Privacidad Garantizada:</strong> Z-Beat Studio es una aplicación de uso local. No recolectamos, almacenamos ni compartimos sus datos personales con terceros.
         </div>
 
-        <h2>1. Datos Locales</h2>
-        <p>Procesamos tus archivos de audio y metadatos estrictamente en tu dispositivo.</p>
-        
-        <h2>2. Permisos</h2>
+        <h2>1. Acceso a Archivos</h2>
+        <p>Para que la aplicación funcione, se requiere acceso a los archivos de audio almacenados en su dispositivo. Este permiso es necesario exclusivamente para:</p>
         <ul>
-            <li><strong>Audio:</strong> Para leer tu biblioteca musical.</li>
-            <li><strong>Almacenamiento:</strong> Para editar etiquetas y portadas.</li>
-            <li><strong>Llamadas:</strong> Para pausar la música automáticamente.</li>
+            <li>Escanear y organizar su biblioteca musical.</li>
+            <li>Reproducir archivos en formatos de alta calidad.</li>
+            <li>Permitirle editar los metadatos de sus pistas.</li>
         </ul>
 
-        <h2>3. Soporte</h2>
-        <div class="contact-box">
-            📧 <a href="mailto:support@karagatostudios.com">support@karagatostudios.com</a>
+        <h2>2. Permisos del Sistema</h2>
+        <p>Solicitamos los siguientes permisos con fines operativos específicos:</p>
+        <ul>
+            <li><strong>Notificaciones:</strong> Para mantener los controles de reproducción activos.</li>
+            <li><strong>Llamadas:</strong> Para pausar la música automáticamente al recibir una llamada.</li>
+            <li><strong>Audio (Grabación):</strong> Utilizado únicamente para el motor del ecualizador visual.</li>
+        </ul>
+
+        <h2>3. Seguridad</h2>
+        <p>La aplicación no utiliza servicios de rastreo ni publicidad intrusiva. Toda la información técnica generada se mantiene dentro de los límites del almacenamiento local de su teléfono Android.</p>
+
+        <div class="contact-section">
+            <p style="margin-bottom: 10px; color: #FFF;">¿Tiene dudas o sugerencias?</p>
+            <p>Soporte: <a href="mailto:soporte@karagatostudios.com">soporte@karagatostudios.com</a></p>
         </div>
     </section>
 
     <footer>
-        © 2026 <span class="neon-text">Karagato Studios</span> | Workshop Development
+        © 2026 Karagato Studios | Software de Taller y Desarrollo Industrial
     </footer>
 </div>
 
