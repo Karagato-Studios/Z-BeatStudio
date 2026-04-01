@@ -16,11 +16,7 @@
             --border-gradient: linear-gradient(135deg, var(--neon-blue), var(--neon-red));
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -31,48 +27,33 @@
             overflow-x: hidden;
         }
 
-        /* Animated background */
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: 
                 radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 0, 110, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 80% 80%, rgba(255, 0, 110, 0.1) 0%, transparent 50%);
             z-index: -1;
             animation: pulse 8s ease-in-out infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
+        @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
 
         header {
             text-align: center;
-            margin-bottom: 60px;
-            padding: 50px 20px;
+            margin-bottom: 40px;
+            padding: 60px 20px;
             background: var(--card-bg);
             border-radius: 24px;
-            border: 2px solid transparent;
-            background-clip: padding-box;
             position: relative;
-            box-shadow: 
-                0 0 30px rgba(0, 212, 255, 0.2),
-                0 0 60px rgba(255, 0, 110, 0.05);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
             display: flex;
             flex-direction: column;
             align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         header::before {
@@ -82,181 +63,103 @@
             background: var(--border-gradient);
             border-radius: 24px;
             z-index: -1;
-            animation: glow-border 3s ease-in-out infinite alternate;
+            opacity: 0.3;
         }
 
-        @keyframes glow-border {
-            from { opacity: 0.4; filter: blur(5px); }
-            to { opacity: 0.8; filter: blur(15px); }
-        }
-
-        /* Estilos del Logo */
+        /* LOGO AJUSTADO - MÁS GRANDE Y CON MÁS PRESENCIA */
         .logo-container {
-            margin-bottom: 25px;
-            position: relative;
+            margin-bottom: 30px;
+            perspective: 1000px;
         }
 
         .main-logo {
-            width: 140px; /* Tamaño optimizado para el logo de Karagato */
+            width: 200px; /* Tamaño aumentado significativamente */
+            max-width: 80%; /* Para que en móviles pequeños no se salga */
             height: auto;
-            filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.6));
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: flicker-logo 5s linear infinite;
+            filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.7));
+            transition: all 0.5s ease;
+            animation: float 4s ease-in-out infinite;
         }
 
-        @keyframes flicker-logo {
-            0%, 100% { filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.6)); }
-            50% { filter: drop-shadow(0 0 25px rgba(255, 0, 110, 0.6)); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
         }
 
         .main-logo:hover {
-            transform: scale(1.15) rotate(-3deg);
-            filter: drop-shadow(0 0 30px var(--neon-blue));
+            transform: scale(1.1) rotate(-5deg);
+            filter: drop-shadow(0 0 35px var(--neon-red));
         }
 
         .brand {
             color: var(--neon-blue);
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 0.9rem;
+            letter-spacing: 5px;
+            font-size: 1rem;
             margin-bottom: 10px;
-            display: block;
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
         }
 
         h1 {
             color: var(--text-primary);
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 8vw, 3.8rem); /* Tamaño fluido */
             margin: 5px 0;
             font-weight: 900;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-red));
+            background: var(--border-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .tagline {
-            color: var(--text-secondary);
-            font-style: italic;
-            font-size: 1.1rem;
-            margin-top: 10px;
-        }
+        .tagline { color: var(--text-secondary); font-style: italic; font-size: 1.1rem; }
 
         section {
-            background: var(--card-bg);
-            padding: 50px;
+            background: rgba(26, 26, 26, 0.8);
+            padding: clamp(20px, 5vw, 50px);
             border-radius: 24px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
             margin-bottom: 30px;
-            backdrop-filter: blur(15px);
         }
 
-        .update-date {
-            color: var(--neon-blue);
-            font-weight: 600;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .update-date::before {
-            content: '';
-            width: 8px; height: 8px;
-            background: var(--neon-blue);
-            border-radius: 50%;
-            margin-right: 10px;
-            box-shadow: 0 0 10px var(--neon-blue);
-        }
+        .update-date { color: var(--neon-blue); font-weight: 600; margin-bottom: 25px; font-size: 0.9rem; }
 
         .neon-box {
             background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(255, 0, 110, 0.05));
-            border: 1px solid rgba(0, 212, 255, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.2);
             border-radius: 16px;
-            padding: 30px;
-            margin: 30px 0;
-            position: relative;
-            box-shadow: inset 0 0 20px rgba(0, 212, 255, 0.05);
+            padding: 25px;
+            margin: 25px 0;
         }
 
         h2 {
             color: var(--neon-blue);
-            font-size: 1.6rem;
-            margin-bottom: 25px;
-            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 15px;
+            padding-bottom: 10px;
         }
 
-        p, li {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        ul { margin-left: 10px; list-style: none; }
-        li {
-            position: relative;
-            padding-left: 25px;
-        }
-        li::before {
-            content: '►';
-            position: absolute;
-            left: 0;
-            color: var(--neon-red);
-            font-size: 0.8rem;
-        }
+        p, li { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 15px; }
+        ul { list-style: none; }
+        li { position: relative; padding-left: 25px; }
+        li::before { content: '►'; position: absolute; left: 0; color: var(--neon-red); font-size: 0.8rem; }
 
         .contact-box {
             background: rgba(0, 212, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
-            padding: 30px;
-            margin-top: 40px;
+            padding: 25px;
             text-align: center;
         }
 
-        a {
-            color: var(--neon-blue);
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
+        a { color: var(--neon-blue); text-decoration: none; font-weight: 700; transition: 0.3s; }
+        a:hover { color: var(--neon-red); text-shadow: 0 0 10px var(--neon-red); }
 
-        a:hover {
-            color: var(--neon-red);
-            text-shadow: 0 0 15px var(--neon-red);
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #555;
-            font-size: 0.85rem;
-            padding: 40px;
-        }
-
-        .neon-text {
-            background: var(--border-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 800;
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            section { padding: 30px 20px; }
-            .main-logo { width: 100px; }
-        }
+        footer { text-align: center; color: #444; font-size: 0.8rem; padding: 40px; }
+        .neon-text { background: var(--border-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
     </style>
 </head>
 <body>
@@ -268,65 +171,35 @@
         </div>
         <span class="brand">Karagato Studios</span>
         <h1>Z-Beat Studio</h1>
-        <p class="tagline">Reproductor de Música Local con Estilo Neon</p>
+        <p class="tagline">Audio Hi-Fi & Estética Neon</p>
     </header>
 
     <section>
         <p class="update-date">Última actualización: 31 de marzo de 2026</p>
 
         <div class="neon-box">
-            <strong><span class="neon-text">Compromiso de Privacidad Total:</span></strong><br>
-            Z-Beat Studio es un reproductor de música <strong>100% local</strong>. No recopilamos datos personales, no subimos tus archivos a la nube y no te rastreamos. Tu música, tu privacidad.
+            <strong><span class="neon-text">Privacidad Total:</span></strong><br>
+            Z-Beat Studio funciona de forma local. No recopilamos, no rastreamos y no subimos tus datos.
         </div>
 
-        <h2>1. Datos que Recopilamos</h2>
-        <p><strong>Z-Beat Studio NO recopila datos personales.</strong> La aplicación funciona completamente offline y procesa todo en tu dispositivo:</p>
-        <ul>
-            <li><strong>Acceso local:</strong> Solo accede a archivos de audio autorizados.</li>
-            <li><strong>Metadatos:</strong> Lee información técnica (ID3 tags) localmente.</li>
-            <li><strong>Playlists:</strong> Se almacenan exclusivamente en la base de datos local de la app.</li>
-            <li><strong>Configuraciones:</strong> Tus ajustes de ecualizador se guardan en tu teléfono.</li>
-        </ul>
-
-        <h2>2. Permisos y su Propósito</h2>
-        <p>Somos transparentes con el acceso que necesitamos:</p>
-        <ul>
-            <li><strong>READ_MEDIA_AUDIO:</strong> Vital para encontrar tu música.</li>
-            <li><strong>MANAGE_EXTERNAL_STORAGE:</strong> Necesario para que puedas editar carátulas y etiquetas de tus canciones.</li>
-            <li><strong>POST_NOTIFICATIONS:</strong> Para que controles la música desde tu barra de notificaciones.</li>
-            <li><strong>FOREGROUND_SERVICE:</strong> Para que la música no se detenga al salir de la app.</li>
-            <li><strong>RECORD_AUDIO:</strong> Solo para el funcionamiento visual del ecualizador.</li>
-        </ul>
-
-        <h2>3. Uso de Datos y Seguridad</h2>
-        <div class="neon-box">
-            <strong><span class="neon-text">Seguridad de Grado Workshop:</span></strong><br>
-            • Cero servidores externos.<br>
-            • Cero publicidad intrusiva.<br>
-            • Cero venta de información a terceros.<br>
-            • Cero analíticas de comportamiento.
-        </div>
-
-        <h2>4. Servicios de Terceros</h2>
-        <p>Utilizamos componentes estándar de la industria para garantizar estabilidad:</p>
-        <ul>
-            <li><strong>Google Play Services:</strong> Solo para informes de errores (crash reports) anónimos.</li>
-            <li><strong>Android MediaStore:</strong> Para una integración fluida con tu sistema operativo.</li>
-        </ul>
-
-        <h2>5. Contacto y Soporte</h2>
-        <p>Para preguntas sobre privacidad o soporte técnico de <strong>Z-Beat Studio</strong>, el equipo de <strong>Karagato Studios</strong> está listo para ayudarte:</p>
+        <h2>1. Datos Locales</h2>
+        <p>Procesamos tus archivos de audio y metadatos estrictamente en tu dispositivo.</p>
         
+        <h2>2. Permisos</h2>
+        <ul>
+            <li><strong>Audio:</strong> Para leer tu biblioteca musical.</li>
+            <li><strong>Almacenamiento:</strong> Para editar etiquetas y portadas.</li>
+            <li><strong>Llamadas:</strong> Para pausar la música automáticamente.</li>
+        </ul>
+
+        <h2>3. Soporte</h2>
         <div class="contact-box">
-            📧 <strong>Privacidad:</strong> <a href="mailto:privacy@karagatostudios.com">privacy@karagatostudios.com</a><br>
-            🎵 <strong>Soporte Técnico:</strong> <a href="mailto:support@karagatostudios.com">support@karagatostudios.com</a><br>
-            🌐 <strong>Official Brand:</strong> <a href="https://karagato-studios.github.io/Z-BeatStudio/">karagatostudios.io</a>
+            📧 <a href="mailto:support@karagatostudios.com">support@karagatostudios.com</a>
         </div>
     </section>
 
     <footer>
-        © 2026 <span class="neon-text">Karagato Studios</span> | Workshop Development<br>
-        <small>Z-Beat Studio y el logo de Karagato Studios son marcas registradas de sus respectivos creadores.</small>
+        © 2026 <span class="neon-text">Karagato Studios</span> | Workshop Development
     </footer>
 </div>
 
